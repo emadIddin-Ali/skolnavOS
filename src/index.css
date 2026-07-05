@@ -1,0 +1,90 @@
+@import './styles/tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    border-color: rgb(var(--c-border));
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    font-size: calc(16px * var(--font-scale, 1));
+  }
+
+  body {
+    @apply bg-bg text-ink antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+    text-rendering: optimizeLegibility;
+    min-height: 100dvh;
+  }
+
+  /* Synliga fokusringar – tillgänglighet */
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary/60 ring-offset-1 ring-offset-bg;
+    border-radius: 8px;
+  }
+
+  ::selection {
+    background: rgb(var(--c-primary) / 0.18);
+  }
+
+  /* Respektera reducerad rörelse */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Diskreta scrollbars */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--c-border-strong)) transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: rgb(var(--c-border-strong));
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+}
+
+@layer components {
+  /* Skelett-laddning */
+  .skeleton {
+    @apply relative overflow-hidden rounded-md bg-surface-2;
+  }
+  .skeleton::after {
+    @apply absolute inset-0;
+    content: '';
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgb(var(--c-surface-3) / 0.9),
+      transparent
+    );
+    animation: shimmer 1.4s infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .skeleton::after {
+      animation: none;
+    }
+  }
+
+  /* Fokusbar tabellrad */
+  .row-hover {
+    @apply transition-colors hover:bg-surface-2;
+  }
+}

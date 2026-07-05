@@ -1,0 +1,136 @@
+/*
+ * Skolnav OS – designtokens
+ * ---------------------------------------------------------------------------
+ * All färg drivs av CSS-variabler med RGB-kanaler (space separated) så att
+ * Tailwinds opacitetsmodifierare (t.ex. bg-primary/10) fungerar.
+ *
+ * Tre globala lägen retintar hela systemet:
+ *   [data-mode="grundskola"]  – Årskurs 1–9: varmare, mjukare, lugnare
+ *   [data-mode="gymnasium"]   – Gymnasium/Vux: moget, akademiskt, tätare
+ *   [data-mode="admin"]       – Personal/Admin: operativt, sakligt, neutralt
+ *
+ * Ljust/mörkt styrs av [data-theme="light|dark"].
+ */
+
+:root {
+  /* Neutraler – ljust (varmtonad, mjuk institutionell gråskala) */
+  --c-bg: 244 246 249;
+  --c-surface: 255 255 255;
+  --c-surface-2: 241 244 248;
+  --c-surface-3: 232 237 243;
+  --c-border: 226 231 238;
+  --c-border-strong: 203 212 224;
+  --c-ink: 24 34 48;
+  --c-ink-muted: 74 86 104;
+  --c-ink-subtle: 122 134 151;
+
+  /* Primär – djup institutionell blå (trygg, formell, nordisk) */
+  --c-primary: 31 78 121;
+  --c-primary-fg: 255 255 255;
+  --c-primary-soft: 230 238 247;
+  --c-primary-strong: 22 57 90;
+
+  /* Accent – lugn teal för framhävning */
+  --c-accent: 22 122 118;
+  --c-accent-soft: 224 240 238;
+
+  /* Semantiska */
+  --c-success: 40 121 89;
+  --c-success-soft: 226 241 233;
+  --c-warning: 176 116 24;
+  --c-warning-soft: 250 240 220;
+  --c-danger: 193 54 47;
+  --c-danger-soft: 250 229 227;
+  --c-info: 43 108 176;
+  --c-info-soft: 228 238 249;
+
+  /* Dataklassificering 1 Publik → 6 Säkerhetsdata */
+  --c-class-1: 75 127 99;
+  --c-class-2: 59 126 161;
+  --c-class-3: 138 109 59;
+  --c-class-4: 176 116 24;
+  --c-class-5: 192 86 33;
+  --c-class-6: 155 44 44;
+
+  /* Densitet (rader/knappar) – lägena kan justera */
+  --density-row: 44px;
+  --font-scale: 1;
+
+  color-scheme: light;
+}
+
+/* ---- Läge: Årskurs 1–9 (varmare, mjukare) ---- */
+:root[data-mode='grundskola'] {
+  --c-bg: 247 246 243;
+  --c-surface-2: 245 243 239;
+  --c-primary: 33 94 140;
+  --c-primary-soft: 226 238 246;
+  --c-accent: 200 138 45;
+  --c-accent-soft: 248 239 224;
+  --density-row: 48px;
+}
+
+/* ---- Läge: Gymnasium/Vux (moget, akademiskt, tätare) ---- */
+:root[data-mode='gymnasium'] {
+  --c-bg: 243 245 248;
+  --c-primary: 27 63 102;
+  --c-primary-soft: 227 234 244;
+  --c-accent: 90 74 145;
+  --c-accent-soft: 236 232 246;
+  --density-row: 40px;
+}
+
+/* ---- Läge: Personal/Admin (operativt, neutralt) ---- */
+:root[data-mode='admin'] {
+  --c-bg: 242 244 247;
+  --c-primary: 31 78 121;
+  --c-accent: 22 122 118;
+  --density-row: 40px;
+}
+
+/* ---- Mörkt tema ---- */
+:root[data-theme='dark'] {
+  --c-bg: 13 18 25;
+  --c-surface: 22 29 39;
+  --c-surface-2: 28 36 47;
+  --c-surface-3: 35 45 58;
+  --c-border: 42 53 67;
+  --c-border-strong: 58 72 90;
+  --c-ink: 231 237 244;
+  --c-ink-muted: 167 179 195;
+  --c-ink-subtle: 124 138 156;
+
+  --c-primary: 96 158 214;
+  --c-primary-fg: 12 20 30;
+  --c-primary-soft: 30 46 66;
+  --c-primary-strong: 130 180 224;
+
+  --c-accent: 74 178 170;
+  --c-accent-soft: 24 48 47;
+
+  --c-success: 84 176 133;
+  --c-success-soft: 22 46 37;
+  --c-warning: 214 160 74;
+  --c-warning-soft: 48 40 22;
+  --c-danger: 226 111 103;
+  --c-danger-soft: 52 28 27;
+  --c-info: 106 160 214;
+  --c-info-soft: 24 40 58;
+
+  --c-class-1: 118 176 141;
+  --c-class-2: 108 165 200;
+  --c-class-3: 186 158 104;
+  --c-class-4: 214 160 74;
+  --c-class-5: 224 138 92;
+  --c-class-6: 214 116 116;
+
+  color-scheme: dark;
+}
+
+:root[data-theme='dark'][data-mode='grundskola'] {
+  --c-bg: 20 19 16;
+  --c-accent: 214 168 96;
+}
+:root[data-theme='dark'][data-mode='gymnasium'] {
+  --c-accent: 150 134 205;
+}
